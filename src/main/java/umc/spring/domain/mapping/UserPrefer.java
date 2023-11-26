@@ -30,7 +30,7 @@ public class UserPrefer extends BaseEntity {
     //기존에 있던 user의 참조키중 자신에 대한 정보를 지우고, 매핑관계를 새로 설정
     public void setUser(User user){
         if(this.user != null)
-            user.getUserPreferList().remove(this);
+            this.user.getUserPreferList().remove(this);
         this.user = user;
         user.getUserPreferList().add(this);
     }
