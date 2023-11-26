@@ -29,8 +29,7 @@ public class StoreExistValidator implements ConstraintValidator<ExistStore, Long
         Store store = storeQueryService.findStore(value);
         if(store == null){ //유효성 검사
             context.disableDefaultConstraintViolation();  //기본 메시지 제거
-            //커스텀 메시지를 전달
-            context.buildConstraintViolationWithTemplate(ErrorStatus.STORE_NOT_FOUND.toString()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.STORE_NOT_FOUND.toString()).addConstraintViolation(); //커스텀 메시지를 전달
             return false;
         }
         return true;
