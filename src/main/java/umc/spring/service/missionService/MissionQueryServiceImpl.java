@@ -3,6 +3,7 @@ package umc.spring.service.missionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import umc.spring.domain.Mission;
+import umc.spring.domain.User;
 import umc.spring.repository.MissionRepository;
 
 import java.util.Optional;
@@ -19,5 +20,11 @@ public class MissionQueryServiceImpl implements MissionQueryService{
             return null;
         }
         return mission.get();
+    }
+
+    @Override
+    public boolean isChallenge(User user, Mission mission) {
+        boolean isChallenge = mission.getUserMissionList().contains(user);
+        return isChallenge;
     }
 }

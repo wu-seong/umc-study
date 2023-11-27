@@ -1,9 +1,12 @@
 package umc.spring.web.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import umc.spring.domain.Mission;
 import umc.spring.domain.Store;
 import umc.spring.domain.User;
+import umc.spring.validation.annotation.ExistMission;
 import umc.spring.validation.annotation.PassDate;
 
 import javax.validation.constraints.Min;
@@ -30,5 +33,13 @@ public class MissionRequestDTO {
         public void setStore(Store store){
             this.store = store;
         }
+    }
+    @Getter
+    @AllArgsConstructor
+    public static class acceptDto{
+        private User user;
+
+        @ExistMission
+        private Mission mission;
     }
 }

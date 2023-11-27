@@ -15,7 +15,9 @@ import umc.spring.domain.mapping.UserMission;
 import umc.spring.service.missionService.MissionCommandService;
 import umc.spring.service.missionService.MissionQueryService;
 import umc.spring.service.userService.UserQueryService;
+import umc.spring.validation.annotation.ExistMission;
 import umc.spring.validation.annotation.ExistStore;
+import umc.spring.web.dto.MissionRequestDTO;
 import umc.spring.web.dto.ReviewRequestDTO;
 import umc.spring.web.dto.ReviewResponseDTO;
 import umc.spring.web.dto.UserMissionResponseDTO;
@@ -31,13 +33,14 @@ public class MissionController {
     private final MissionQueryService missionQueryService;
     private final MissionCommandService missionCommandService;
     @PostMapping("/{mission-id}")
-    public ApiResponse<UserMissionResponseDTO.acceptResultDTO> accept(@PathVariable("mission-id") Long missionId ){
+    public ApiResponse<UserMissionResponseDTO.acceptResultDTO> accept(@PathVariable("mission-id") @ExistMission Long missionId ){
         //원래는 인증정보로 유저를 가져오지만 이 과정은 생략, 아무유저나 가져옴
         User user = userQueryService.findUser(2L);
         //PathVariable 통해 mission 가져오기
         Mission mission = missionQueryService.findMission(missionId);
         //user와 mission을 주고 매핑을 시킴
-        UserMission userMission = missionCommandService.acceptMission(user, mission);
+        MissionRequestDTO.acceptDto acceptDto = new MissionRequestDTO.acceptDto(user, mission);
+        UserMission userMission = missionCommandService.acceptMission(acceptDto);
 
         return ApiResponse.onSuccess(MissionConverter.toAcceptResultDTO(userMission));
     }
