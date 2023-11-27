@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface StoreQueryService {
     public Store findStore(Long storeId);
+
 }

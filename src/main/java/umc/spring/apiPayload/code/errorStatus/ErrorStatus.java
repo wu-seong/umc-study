@@ -26,8 +26,9 @@ public enum ErrorStatus implements BaseErrorCode {
     // Store 관련 응답
     STORE_NOT_FOUND(HttpStatus.NOT_FOUND,"STORE4001", "해당 가게가 없습니다."),
     // Mission 관련 응답
-    PASSED_DEADLINE_DATE(HttpStatus.BAD_REQUEST, "MISSION4002", "요청의 데드라인이 이미 지났습니다.");
-
+    MISSION_NOT_FOUND(HttpStatus.NOT_FOUND,"MISSION4001", "해당 미션이 없습니다."),
+    PASSED_DEADLINE_DATE(HttpStatus.BAD_REQUEST, "MISSION4002", "요청의 데드라인이 이미 지났습니다."),
+    ALREADY_ACCEPTED_MISSION(HttpStatus.BAD_REQUEST, "MISSION4003", "해당 사용자에게 이미 수락된 미션입니다.");
     private final HttpStatus httpStatus;
     private final String code;
     private final String message;
