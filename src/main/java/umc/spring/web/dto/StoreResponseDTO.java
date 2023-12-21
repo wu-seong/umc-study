@@ -9,13 +9,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class MissionResponseDTO {
+public class StoreResponseDTO {
     @Builder
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class addResultDTO{
-        Long missionId;
+    public static class EnrollResultDTO{
+        Long reviewId;
         LocalDateTime createdAt;
     }
 
@@ -23,8 +23,8 @@ public class MissionResponseDTO {
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class MissionPreViewListDTO {
-        List<MissionResponseDTO.MissionPreviewDTO> missionList;
+    public static class ReviewPreViewListDTO {
+        List<StoreResponseDTO.ReviewPreviewDTO> reviewList;
         Integer listSize;
         Integer totalPage;
         Long totalElements;
@@ -36,10 +36,10 @@ public class MissionResponseDTO {
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class MissionPreviewDTO {
-        LocalDate deadline;
-        Integer minimum_amount;
-        Integer reward_point;
+    public static class ReviewPreviewDTO {
+        String reviewer;
+        String evaluation; //리뷰 평가 점수(enum)
+        String body;
         LocalDate createdAt;
     }
 }

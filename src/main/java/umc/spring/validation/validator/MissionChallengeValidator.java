@@ -3,17 +3,12 @@ package umc.spring.validation.validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import umc.spring.apiPayload.code.errorStatus.ErrorStatus;
-import umc.spring.domain.Mission;
 import umc.spring.service.missionService.MissionQueryService;
 import umc.spring.validation.annotation.ChallengeMission;
-import umc.spring.validation.annotation.PassDate;
-import umc.spring.web.dto.MissionAcceptDTO;
 import umc.spring.web.dto.MissionRequestDTO;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.time.LocalDate;
-import java.util.Map;
 
 @Component
 @RequiredArgsConstructor

@@ -1,19 +1,16 @@
 package umc.spring.web.dto;
 
-
 import lombok.Getter;
 import umc.spring.domain.Store;
 import umc.spring.domain.User;
 import umc.spring.domain.enums.Rate;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class ReviewRequestDTO {
-
+public class StoreRequestDTO {
     @Getter
-    public static class enrollDto{
+    public static class ReviewDto{
 
         private User user;
 

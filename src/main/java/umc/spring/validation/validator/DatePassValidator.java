@@ -26,7 +26,7 @@ public class DatePassValidator implements ConstraintValidator<PassDate, LocalDat
         LocalDate now = LocalDate.now();
         if(now.isAfter(values)){ //이미 지난 시간 검증
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(ErrorStatus.PASSED_DEADLINE_DATE.getMessage()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.PASSED_DEADLINE_DATE.toString()).addConstraintViolation();
             return false;
         }
         return true;
