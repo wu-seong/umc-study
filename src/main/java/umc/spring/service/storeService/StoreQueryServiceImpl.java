@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import umc.spring.apiPayload.code.errorStatus.ErrorStatus;
 import umc.spring.domain.Mission;
 import umc.spring.domain.Review;
 import umc.spring.domain.Store;
+import umc.spring.exception.handler.StoreHandler;
 import umc.spring.repository.MissionRepository;
 import umc.spring.repository.ReviewRepository;
 import umc.spring.repository.StoreRepository;
@@ -32,7 +34,7 @@ public class StoreQueryServiceImpl implements StoreQueryService{
 
     @Override
     public Page<Review> getReviewList(Long storeId, Integer page) {
-        Store store = storeRepository.findById(storeId).get();
+        Store store = storeRepository.findById(storeId).orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
         Page<Review> allByStore = reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
 
         return allByStore;
@@ -40,7 +42,7 @@ public class StoreQueryServiceImpl implements StoreQueryService{
 
     @Override
     public Page<Mission> getMissionList(Long storeId, Integer page) {
-        Store store = storeRepository.findById(storeId).get();
+        Store store = storeRepository.findById(storeId).orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
         Page<Mission> allByStore = missionRepository.findAllByStore(store, PageRequest.of(page, 10));
 
         return allByStore;

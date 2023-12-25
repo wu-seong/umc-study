@@ -24,7 +24,6 @@ import umc.spring.web.dto.MissionResponseDTO;
 import umc.spring.web.dto.StoreResponseDTO;
 import umc.spring.web.dto.UserRequestDTO;
 import umc.spring.web.dto.UserResponseDTO;
-
 import javax.validation.Valid;
 
 @RestController
@@ -62,7 +61,7 @@ public class UserRestController {
         return ApiResponse.onSuccess(reviewPreViewListDTO);
     }
 
-    @GetMapping("/{user-id}/mission")
+    @GetMapping("/{user-id}/missions")
     @Operation(summary = "특정 유저의 미션 목록 조회 API", description = "특정 유저의 미션들의 목록을 조회하는 API, 페이징을 포함합니다. query String 으로 page 번호를 주세요")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200",description = "OK, 성공"),
