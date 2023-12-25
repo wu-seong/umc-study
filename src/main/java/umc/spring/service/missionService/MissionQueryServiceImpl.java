@@ -2,8 +2,11 @@ package umc.spring.service.missionService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import umc.spring.apiPayload.code.errorStatus.ErrorStatus;
 import umc.spring.domain.Mission;
 import umc.spring.domain.User;
+import umc.spring.exception.handler.MissionHandler;
+import umc.spring.exception.handler.StoreHandler;
 import umc.spring.repository.MissionRepository;
 
 import java.util.Optional;
@@ -16,10 +19,8 @@ public class MissionQueryServiceImpl implements MissionQueryService{
     @Override
     public Mission findMission(Long id) {
         Optional<Mission> mission = missionRepository.findById(id);
-        if(mission.isEmpty()){
-            return null;
-        }
-        return mission.get();
+        return mission.orElseThrow(() -> new MissionHandler(ErrorStatus.MISSION_NOT_FOUND));
+
     }
 
     @Override
